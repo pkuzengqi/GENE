@@ -1,1 +1,14 @@
-rebuild event network embedding with new and clean code base -- 20200912
+# GENE
+
+Code for TextGraphs 2021 paper "GENE: Global Event Network Embedding"
+
+
+# Data Preparation
+
+# Run
+
+# Citation
+
+```
+
+```
