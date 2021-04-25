@@ -35,7 +35,7 @@ vocab_size_dict = {
 }
 
 
-def get_metapath_dict(etypes, data_path='../../data/ace/ace_graph/'):
+def get_metapath_dict(etypes, data_path='./data/ace/ace_graph/'):
     # correspond to three views
     metapath_dict = {
         'entity2entity': [],
