@@ -35,7 +35,7 @@ vocab_size_dict = {
 }
 
 
-def get_metapath_dict(etypes, data_path='./data/ace/ace_graph/'):
+def get_metapath_dict(etypes, data_path='../data/ace/'):
     # correspond to three views
     metapath_dict = {
         'entity2entity': [],
@@ -59,7 +59,7 @@ def get_metapath_dict(etypes, data_path='./data/ace/ace_graph/'):
 
     return metapath_dict
 
-def get_argroletyping_masks(data_path='../../data/ace/ace_graph/'):
+def get_argroletyping_masks(data_path='./data/ace/'):
     # 238 classes --> 238 0/1
 
     event2arg = dict() # { 'attack':[]}
@@ -167,7 +167,7 @@ def construct_homo_from_hetero_dglgraph(g):
     return hg
 
 # used in training model
-def construct_hetero_dglgraph(data_path, file_prefix='test', emb_path='./emb/',load_version='', homo=False, datainput='narr coref temp'):
+def construct_hetero_dglgraph(data_path, file_prefix='test', emb_path='./emb/',load_version=''):
 
     labels = json.load(open(os.path.join(data_path, file_prefix + '.label.json'), 'r'))
 
@@ -215,19 +215,8 @@ def construct_hetero_dglgraph(data_path, file_prefix='test', emb_path='./emb/',l
         dgld.setdefault(('entity', type_name, 'entity'),[])
         dgld[('entity', type_name, 'entity')].append((t[0],t[1]))
 
-    # event-event relations cotrol by using string variable
-    if 'narr' in datainput:
-        dgld[('event', 'Event2Event:Narr', 'event')] = [(t[0], t[1]) for t in labels['narr']]
-    if 'coref' in datainput:
-        dgld[('event', 'Event2Event:Coref', 'event')] = [(t[0], t[1]) for t in labels['coref']]
-    if 'eer' in datainput:
-        for t in labels['eer']:
-            type_id = t[2]
-            type_name = eve2eve_typedict[type_id]
-            dgld.setdefault(('event', type_name, 'event'), [])
-            dgld[('event', type_name, 'event')].append((t[0], t[1]))
-    if 'eer_all' in datainput:
-        dgld[('event', 'eer', 'event')] = [(t[0], t[1]) for t in labels['eer']]
+    # event-event relations
+    dgld[('event', 'Event2Event:Narr', 'event')] = [(t[0], t[1]) for t in labels['narr']]
 
     g = dgl.heterograph(dgld)
 

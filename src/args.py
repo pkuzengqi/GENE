@@ -11,11 +11,11 @@ def parse_args():
     """
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--proj_path', type=str, default='./')
-    parser.add_argument('--data_path', type=str, default='./data/ace/ace_graph/')
-    parser.add_argument('--model_path', type=str, default='./checkpoint/', help="model saving directory")
-    parser.add_argument('--emb_path', type=str, default='./emb/', help="")
-    parser.add_argument('--log_path', type=str, default='./log/')
+    parser.add_argument('--proj_path', type=str, default='../')
+    parser.add_argument('--data_path', type=str, default='../data/ace/')
+    parser.add_argument('--model_path', type=str, default='../checkpoint/', help="model saving directory")
+    parser.add_argument('--emb_path', type=str, default='../emb/', help="")
+    parser.add_argument('--log_path', type=str, default='../log/')
 
     parser.add_argument('--epochs', type=int, default=100)
     parser.add_argument('--batch_size', type=int, default=16)
@@ -26,12 +26,11 @@ def parse_args():
     parser.add_argument('--random_seed',type=int, default=42)
 
     parser.add_argument('--mode', choices=MODES, default='train')
-    parser.add_argument('--version', type=str, default='1000.0')
+    parser.add_argument('--version', type=str, default='test')
     parser.add_argument('--model_base', type=str, default='SEM_ARC')
-    parser.add_argument('--load_model', type=str, default='none.model', help='format model_base.0.0.0.model')
-    parser.add_argument('--load_emb', type=str, default='', help='format DGI.0.0, if not found use default')
+    parser.add_argument('--load_model', type=str, default='test.model', help='format model_base.version.model')
+    parser.add_argument('--load_emb', type=str, default='', help='format model_base.version, if not found use default')
 
-    parser.add_argument('--data_input', type=str, default='narr', help='narr coref eer temp')
     parser.add_argument('--views',type=str, default=None, help='event2entity entity2entity event2event all')
     parser.add_argument('--pooling',type=str, default='avg', help='cat avg weighted no')
 

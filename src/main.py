@@ -28,15 +28,11 @@ class Model():
         g = construct_hetero_dglgraph(data_path=self.args.data_path,
                                          file_prefix='train',
                                          emb_path=self.args.emb_path,
-                                         load_version=self.args.load_emb,
-                                         homo=self.args.homogenous,
-                                         datainput=self.args.data_input)
+                                         load_version=self.args.load_emb)
         valg = construct_hetero_dglgraph(data_path=self.args.data_path,
                                          file_prefix='dev',
                                          emb_path=self.args.emb_path,
-                                         load_version=self.args.load_emb,
-                                         homo=self.args.homogenous,
-                                         datainput=self.args.data_input)
+                                         load_version=self.args.load_emb)
 
         self.model = HeteroEventNet(g,valg,
                              nfeat=self.args.input_dim,
@@ -110,16 +106,14 @@ class Model():
         g = construct_hetero_dglgraph(data_path=self.args.data_path,
                                          file_prefix='train',
                                          emb_path=self.args.emb_path,
-                                         load_version=self.args.load_emb,
-                                         datainput=self.args.data_input)
+                                         load_version=self.args.load_emb)
 
         homo_g = construct_homo_from_hetero_dglgraph(g)
 
         val_g = construct_hetero_dglgraph(data_path=self.args.data_path,
                                          file_prefix='dev',
                                          emb_path=self.args.emb_path,
-                                         load_version=self.args.load_emb,
-                                         datainput=self.args.data_input)
+                                         load_version=self.args.load_emb)
         homo_val_g = construct_homo_from_hetero_dglgraph(val_g)
         val_metapath_dict = get_metapath_dict(val_g.etypes)
 

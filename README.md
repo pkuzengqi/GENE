@@ -33,11 +33,10 @@ allennlp
 
 # Data 
 
-The current data directory only includes the sample data. ACE05 Datset requires LDC License ([Access from LDC](https://catalog.ldc.upenn.edu/LDC2006T06) and preprocessing following [OneIE](http://blender.cs.illinois.edu/software/oneie/). You may contact qizeng2@illinois.edu for the preprocessed (enhanced) data.
+The current data directory only includes the sample data. 
+ACE05 Datset requires LDC License ([Access from LDC](https://catalog.ldc.upenn.edu/LDC2006T06) and preprocessing following [OneIE](http://blender.cs.illinois.edu/software/oneie/). 
 
-Sample Data Format: TODO
-
-Preprocessing Instruction: TODO
+You may contact `qizeng2@illinois.edu` for the preprocessed (enhanced) data.
 
 # Train
 
@@ -47,6 +46,7 @@ CUDA_VISIBLE_DEVICES=0 python main.py --mode 'train' --version 'test' --model_ba
 
 - `mode`: train, infer, eval
 - `model_base`:  SEM_ARC, SEM, ARC, SKG, DGI
+- `version`: name for this model
 
 Check `args.py` for more tunable hyperparameters. 
 
@@ -56,6 +56,6 @@ The evaluation code of **Event Coreference** can be found in `event-coref` folde
 
 The evaluation for **Node Typing** and **Argument Role Classification** can be run with:
 ```
-CUDA_VISIBLE_DEVICES=1 python main_hetero.py --mode 'eval' --version 'test' --load_emb 'SEM_ARC.test'
+CUDA_VISIBLE_DEVICES=0 python main_hetero.py --mode 'eval' --version 'test' --load_emb 'SEM_ARC.test'
 ```
-- `load_emb`: [MODEL-BASE].[VERSION]
+- `load_emb`: [MODELBASE].[VERSION]
